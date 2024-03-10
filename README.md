@@ -1,5 +1,7 @@
 # SPLivestream
 
+[GenshinImpact_info.html《原神》公告](https://genshin4lives.github.io/SPLivestream/GenshinImpact_info.html)
+
 ## 《原神》前瞻特別節目
 
 [GenshinImpact.html《原神》前瞻特別節目](https://genshin4lives.github.io/SPLivestream/GenshinImpact.html)
