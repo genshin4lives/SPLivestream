@@ -50,11 +50,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-
-body,html {
-  overflow: hidden;
-}
 .box {
     float:left;
     width: 50%;
@@ -71,17 +66,20 @@ iframe {
 </head>
 <body>
 
+<div style="width:620px;float:left;overflow: scroll;overflow-x: hidden;height: 100vh">
+
+	<iframe id="twitch_01" src="" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+	<script>
+		document.getElementById("twitch_01").src = "https://player.twitch.tv/?channel=ah11851152n&parent="+  location.host;
+	</script>
+	<br />
+	<iframe id="twitch_02" src="" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+	<script>
+		document.getElementById("twitch_02").src = "https://player.twitch.tv/?channel=ah11851152n&parent="+  location.host;
+	</script>
 
 
-<iframe id="twitch_01" src="" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-<script>
-	document.getElementById("twitch_01").src = "https://player.twitch.tv/?channel=ah11851152n&parent="+  location.host;
-</script>
-<br />
-<iframe id="twitch_02" src="" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-<script>
-	document.getElementById("twitch_02").src = "https://player.twitch.tv/?channel=ah11851152n&parent="+  location.host;
-</script>
+</div>
 </body>
 
 </html>
