@@ -69,7 +69,7 @@ iframe {
 	height: 50vh;
 }
 </style>
-<title>《原神》前瞻直播用 5.0</title>
+<title>《原神》前瞻直播用 5.1</title>
 </head>
 <body>
 
@@ -97,6 +97,30 @@ iframe {
 	<!-- https://www.youtube.com/@Genshinimpact_KR/streams -->
 	<iframe height="315" width="560" src="https://www.youtube.com/embed/sDk9YGLnTHY?autoplay=1&disablekb=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
+
+<script>
+
+
+function reloadAtEightPMUTC8() {
+    const now = new Date();
+    const eightPMUTC8 = new Date();
+    eightPMUTC8.setUTCHours(12, 0, 0, 0); // UTC+8 的晚上 8 點等於 UTC 的中午 12 點
+
+    if (now.getTime() > eightPMUTC8.getTime()) {
+        eightPMUTC8.setDate(eightPMUTC8.getDate() + 1);
+    }
+
+    const timeUntilEightPMUTC8 = eightPMUTC8.getTime() - now.getTime();
+
+    setTimeout(() => {
+        window.location.reload();
+        reloadAtEightPMUTC8(); // 設置下一次重新整理
+    }, timeUntilEightPMUTC8);
+}
+
+reloadAtEightPMUTC8();
+
+</script>
 </body>
 
 </html>
