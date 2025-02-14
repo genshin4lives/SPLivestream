@@ -27,7 +27,6 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -51,7 +50,6 @@ table {
 	border-spacing: 0;
 }
 
-
 body,html {
   overflow: hidden;
 }
@@ -73,11 +71,9 @@ iframe {
 </head>
 <body>
 
-
-
 <div class="box">
 	<!-- B站 -->
-	<iframe width="854" height="480" src="https://www.bilibili.com/blackboard/live/live-activity-player.html?cid=21987615&quality=0&danmaku=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<iframe width="854" height="480" src="https://www.bilibili.com/blackboard/live/live-activity-player.html?cid=21987615&quality=0&danmaku=1" title="Bilibili Live" frameborder="0" allowfullscreen></iframe>
 </div>
 <div class="box">
 	<!-- Twitch -->
@@ -85,21 +81,33 @@ iframe {
 	<script>
 		document.getElementById("Fgenshinimpactofficial").src = "https://player.twitch.tv/?channel=genshinimpactofficial&parent="+  location.host;
 	</script>
-	<!-- <iframe width="854" height="480" src="https://www.youtube.com/embed/884tNlefBxA?autoplay=1&disablekb=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 </div>
 <div class="box">
 	<!-- YT日 -->
-	<!-- https://www.youtube.com/@Genshin_JP/streams -->
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/oIVmVWnv2ec?autoplay=1&disablekb=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<iframe id="ytjpFrame" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
 </div>
 <div class="box">
 	<!-- YT韓 -->
-	<!-- https://www.youtube.com/@Genshinimpact_KR/streams -->
-	<iframe height="315" width="560" src="https://www.youtube.com/embed/Fbv9TtK9nv8?autoplay=1&disablekb=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<iframe id="ytkrFrame" height="315" width="560" src="" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <script>
+function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
 
+// 預設影片 ID
+const defaultYtjp = "oIVmVWnv2ec";
+const defaultYtkr = "Fbv9TtK9nv8";
+
+// 取得網址參數
+const ytjpId = getQueryParam("ytjp") || defaultYtjp;
+const ytkrId = getQueryParam("ytkr") || defaultYtkr;
+
+// 設定 iframe 來源
+document.getElementById("ytjpFrame").src = `https://www.youtube.com/embed/${ytjpId}?autoplay=1&disablekb=1&mute=1`;
+document.getElementById("ytkrFrame").src = `https://www.youtube.com/embed/${ytkrId}?autoplay=1&disablekb=1&mute=1`;
 
 function reloadAtEightPMUTC8() {
     const now = new Date();
@@ -119,8 +127,6 @@ function reloadAtEightPMUTC8() {
 }
 
 reloadAtEightPMUTC8();
-
 </script>
 </body>
-
 </html>
