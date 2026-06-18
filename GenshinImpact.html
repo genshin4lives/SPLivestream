@@ -66,6 +66,28 @@ iframe {
     width: 50vw;
 	height: 50vh;
 }
+.fullscreen-button {
+	position: fixed;
+	right: 16px;
+	bottom: 16px;
+	z-index: 1000;
+	width: 52px;
+	height: 52px;
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-radius: 8px;
+	background: rgba(0, 0, 0, 0.72);
+	color: #fff;
+	font: 700 18px/1 Arial, sans-serif;
+	cursor: pointer;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+.fullscreen-button:hover {
+	background: rgba(30, 30, 30, 0.88);
+}
+.fullscreen-button:focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 3px;
+}
 </style>
 <title>《原神》前瞻直播用</title>
 </head>
@@ -91,6 +113,8 @@ iframe {
 	<iframe id="ytkrFrame" height="315" width="560" src="" frameborder="0" allowfullscreen></iframe>
 </div>
 
+<button id="fullscreenButton" class="fullscreen-button" type="button" title="全螢幕">F11</button>
+
 <script>
 function getQueryParam(name) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -111,6 +135,27 @@ const ytkrId = getQueryParam("ytkr") || defaultYtkr;
 // 設定 iframe 來源
 document.getElementById("ytjpFrame").src = `https://www.youtube.com/embed/${ytjpId}?autoplay=1&disablekb=1&mute=1`;
 document.getElementById("ytkrFrame").src = `https://www.youtube.com/embed/${ytkrId}?autoplay=1&disablekb=1&mute=1`;
+
+const fullscreenButton = document.getElementById("fullscreenButton");
+
+function updateFullscreenButton() {
+    const isFullscreen = Boolean(document.fullscreenElement);
+    fullscreenButton.textContent = isFullscreen ? "ESC" : "F11";
+    fullscreenButton.title = isFullscreen ? "離開全螢幕" : "全螢幕";
+}
+
+fullscreenButton.addEventListener("click", () => {
+    if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+        return;
+    }
+
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+    }
+});
+
+document.addEventListener("fullscreenchange", updateFullscreenButton);
 
 function reloadAtEightPMUTC8() {
     const now = new Date();
